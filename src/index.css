@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Epilogue", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  --color-primary: #EF4444;
+  --color-primary-container: #DC2626;
+  --color-background: #0F0505;
+  --color-surface: #1A0B0B;
+  --color-on-surface: #FFFFFF;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-on-surface font-body selection:bg-primary-container selection:text-white;
+  }
+}
+
+@layer utilities {
+  .aura-glow {
+    background: radial-gradient(circle at center, rgba(239, 68, 68, 0.15) 0%, rgba(15, 5, 5, 0) 70%);
+    animation: pulse-glow 8s ease-in-out infinite alternate;
+  }
+  .bg-radial-red {
+    background: radial-gradient(circle at center, rgba(239, 68, 68, 0.2) 0%, rgba(15, 5, 5, 0) 80%);
+    animation: move-bg 20s linear infinite;
+  }
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    color: transparent;
+    transition: -webkit-text-stroke 0.5s ease;
+  }
+  .text-stroke:hover {
+    -webkit-text-stroke: 1px rgba(239, 68, 68, 0.8);
+  }
+  .bg-grid {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  }
+  .mask-radial {
+    mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+  }
+  .noise {
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    filter: contrast(170%) brightness(1000%);
+    opacity: 0.05;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(1) translate(-50%, -50%); opacity: 0.3; }
+  100% { transform: scale(1.2) translate(-45%, -55%); opacity: 0.6; }
+}
+
+@keyframes move-bg {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap');
