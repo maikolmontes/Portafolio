@@ -47,7 +47,7 @@
     mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
   }
   .noise {
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    background-image: url("/noise.svg");
     filter: contrast(170%) brightness(1000%);
     opacity: 0.05;
   }
