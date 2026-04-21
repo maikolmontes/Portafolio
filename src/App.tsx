@@ -722,15 +722,21 @@ export default function App() {
               </motion.button>
             </Magnetic>
             <Magnetic>
-              <motion.button 
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-                whileHover={{ scale: 1.05, x: -10 }}
-                className="border border-white/10 text-white font-headline font-bold px-8 md:px-12 py-4 md:py-6 rounded-full hover:bg-white/5 transition-all flex items-center gap-4 text-xs md:text-base"
+              <a 
+                href="/CV_Maikol_Montenegro.pdf" 
+                download="CV_Maikol_Montenegro.pdf"
+                className="inline-block"
               >
-                DESCARGAR CV
-                <Download className="w-4 h-4 md:w-5 md:h-5" />
-              </motion.button>
+                <motion.button 
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                  whileHover={{ scale: 1.05, x: -10 }}
+                  className="border border-white/10 text-white font-headline font-bold px-8 md:px-12 py-4 md:py-6 rounded-full hover:bg-white/5 transition-all flex items-center gap-4 text-xs md:text-base cursor-pointer"
+                >
+                  DESCARGAR CV
+                  <Download className="w-4 h-4 md:w-5 md:h-5" />
+                </motion.button>
+              </a>
             </Magnetic>
           </motion.div>
         </div>
