@@ -154,8 +154,22 @@ export default function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/notion");
+        console.log("Iniciando fetch de Notion...");
+        const res = await fetch("/api/notion", {
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (!res.ok) {
+          const text = await res.text();
+          console.error("Respuesta no OK:", res.status, text);
+          throw new Error(`Error del servidor (${res.status}): ${text.substring(0, 100)}`);
+        }
+
         const data = await res.json();
+        console.log("Datos de Notion recibidos:", data);
+
         if (data.error === "TOKEN_MISSING") {
           setErrorMsg(data.message);
         } else if (data.error) {
@@ -164,8 +178,11 @@ export default function App() {
           setNotionData(data);
         }
       } catch (err: any) {
-        console.error("Failed to fetch Notion data:", err);
-        setErrorMsg("Error al conectar con Notion: " + err.message);
+        console.error("Error detallado en fetch:", err);
+        const msg = err.name === 'TypeError' && err.message === 'Failed to fetch' 
+          ? "Error de conexión: No se pudo contactar con la API. Verifica que la ruta /api/notion esté activa en tu despliegue."
+          : err.message;
+        setErrorMsg("Error al conectar con Notion: " + msg);
       } finally {
         setIsLoading(false);
       }
